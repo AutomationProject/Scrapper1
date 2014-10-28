@@ -7,7 +7,7 @@ public class Program
 	public static void main()
 	{
 		String key = "8544174325111181684966f4cc6d4a5383237c6b";
-		String img_fn = "images.jpg";
+		String img_fn = "images.png";
 
 		System.out.println("Decoding");
 		ApiResult ret = BypassCaptchaApi.Submit(key, img_fn);
