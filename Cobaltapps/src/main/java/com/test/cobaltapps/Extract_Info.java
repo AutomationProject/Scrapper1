@@ -35,7 +35,7 @@ public class Extract_Info {
 
 		registerUsers();
 		driver.get("http://cobaltapps.com/forum/");
-		driver.manage().window().maximize();
+		/*driver.manage().window().maximize();
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.xpath("//span[contains(.,'Login or Sign Up')]")));
@@ -61,7 +61,7 @@ public class Extract_Info {
 				.sendKeys("abcd1234");
 		driver.findElement(By.xpath("//input[@id='idLoginRememberMe']"))
 				.click();
-		driver.findElement(By.xpath("//button[@id='idLoginBtn']")).click();
+		driver.findElement(By.xpath("//button[@id='idLoginBtn']")).click();*/
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.xpath("//a[@href='http://cobaltapps.com/forum/privatemessage/index']")));
