@@ -30,38 +30,38 @@ public class Extract_Info {
 	static WebDriver driver = new FirefoxDriver();
 	static WebDriverWait wait = new WebDriverWait(driver, 120);
 
-	public static void main(String[] args) throws InterruptedException,
-			IOException {
+	public static void startProcess() throws InterruptedException, IOException {
 
 		registerUsers();
 		driver.get("http://cobaltapps.com/forum/");
-		/*driver.manage().window().maximize();
-
-		wait.until(ExpectedConditions.presenceOfElementLocated(By
-				.xpath("//span[contains(.,'Login or Sign Up')]")));
-
-		Thread.sleep(4000);
-		driver.findElement(By.xpath("//span[contains(.,'Login or Sign Up')]"))
-				.click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By
-				.xpath("//iframe[contains(@id,'idLoginIframe')]")));
-		driver.switchTo().frame(
-				driver.findElement(By
-						.xpath("//iframe[contains(@id,'idLoginIframe')]")));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By
-				.xpath("//input[contains(@name,'username')]")));
-		driver.findElement(By.xpath("//input[contains(@name,'username')]"))
-				.clear();
-
-		driver.findElement(By.xpath("//input[contains(@name,'username')]"))
-				.sendKeys("DaveyShapiro");
-		driver.findElement(By.xpath("//input[contains(@name,'password')]"))
-				.clear();
-		driver.findElement(By.xpath("//input[contains(@name,'password')]"))
-				.sendKeys("abcd1234");
-		driver.findElement(By.xpath("//input[@id='idLoginRememberMe']"))
-				.click();
-		driver.findElement(By.xpath("//button[@id='idLoginBtn']")).click();*/
+		/*
+		 * driver.manage().window().maximize();
+		 * 
+		 * wait.until(ExpectedConditions.presenceOfElementLocated(By
+		 * .xpath("//span[contains(.,'Login or Sign Up')]")));
+		 * 
+		 * Thread.sleep(4000);
+		 * driver.findElement(By.xpath("//span[contains(.,'Login or Sign Up')]"
+		 * )) .click();
+		 * wait.until(ExpectedConditions.presenceOfElementLocated(By
+		 * .xpath("//iframe[contains(@id,'idLoginIframe')]")));
+		 * driver.switchTo().frame( driver.findElement(By
+		 * .xpath("//iframe[contains(@id,'idLoginIframe')]")));
+		 * wait.until(ExpectedConditions.presenceOfElementLocated(By
+		 * .xpath("//input[contains(@name,'username')]")));
+		 * driver.findElement(By.xpath("//input[contains(@name,'username')]"))
+		 * .clear();
+		 * 
+		 * driver.findElement(By.xpath("//input[contains(@name,'username')]"))
+		 * .sendKeys("DaveyShapiro");
+		 * driver.findElement(By.xpath("//input[contains(@name,'password')]"))
+		 * .clear();
+		 * driver.findElement(By.xpath("//input[contains(@name,'password')]"))
+		 * .sendKeys("abcd1234");
+		 * driver.findElement(By.xpath("//input[@id='idLoginRememberMe']"))
+		 * .click();
+		 * driver.findElement(By.xpath("//button[@id='idLoginBtn']")).click();
+		 */
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.xpath("//a[@href='http://cobaltapps.com/forum/privatemessage/index']")));
@@ -80,6 +80,7 @@ public class Extract_Info {
 			// for (int i1 = 0; i1 < 1; i1++) {
 			// String href = hrefs.get(i1);
 			driver.get(href);
+
 			System.out.println("The Sub URL: " + href);
 			String noofpages = "0";
 			List<WebElement> pages = driver.findElements(By
@@ -199,6 +200,10 @@ public class Extract_Info {
 					.click();
 
 		}
+	}
+
+	public static void stopProcess() throws InterruptedException, IOException {
+		driver.close();
 	}
 
 	private static void registerUsers() throws InterruptedException,
