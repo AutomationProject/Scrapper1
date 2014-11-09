@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,9 +16,10 @@ public class Send_Msg {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		/*WebDriver driver = new FirefoxDriver();*/
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\sairam\\Desktop\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
+		WebDriver driver = new FirefoxDriver();
+		// System.setProperty("webdriver.chrome.driver",
+		// "C:\\Users\\sairam\\Desktop\\chromedriver.exe");
+		// WebDriver driver = new ChromeDriver();
 		WebDriverWait wait = new WebDriverWait(driver, 120);
 		driver.get("http://cobaltapps.com/forum/");
 		driver.manage().window().maximize();
@@ -67,9 +66,11 @@ public class Send_Msg {
 			driver.findElement(By.xpath("//a[contains(.,'Compose New')]"))
 					.click();
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[contains(@class,'input--hide-clear-button ui-autocomplete-input')]")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By
+					.xpath("//input[contains(@class,'input--hide-clear-button ui-autocomplete-input')]")));
 
-			driver.findElement(By.xpath("//input[contains(@class,'input--hide-clear-button ui-autocomplete-input')]"))
+			driver.findElement(
+					By.xpath("//input[contains(@class,'input--hide-clear-button ui-autocomplete-input')]"))
 			// By.cssSelector("b-form-input__input--hide-clear-button ui-autocomplete-input"))
 					.sendKeys(temp);
 			Thread.sleep(3000);

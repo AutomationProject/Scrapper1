@@ -30,9 +30,9 @@ public class Extract_Info {
 	static WebDriver driver = new FirefoxDriver();
 	static WebDriverWait wait = new WebDriverWait(driver, 120);
 
-	public static void startProcess() throws InterruptedException, IOException {
+	public static WebDriver startProcess() throws InterruptedException, IOException {
 
-		registerUsers();
+		//registerUsers();
 		driver.get("http://cobaltapps.com/forum/");
 		/*
 		 * driver.manage().window().maximize();
@@ -61,11 +61,11 @@ public class Extract_Info {
 		 * driver.findElement(By.xpath("//input[@id='idLoginRememberMe']"))
 		 * .click();
 		 * driver.findElement(By.xpath("//button[@id='idLoginBtn']")).click();
-		 */
+		 
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.xpath("//a[@href='http://cobaltapps.com/forum/privatemessage/index']")));
-
+*/
 		List<WebElement> links = driver.findElements(By
 				.cssSelector("div.forum-info a"));
 
@@ -155,6 +155,7 @@ public class Extract_Info {
 		System.out.println("The text users are:" + users);
 
 		sendMsg();
+		return driver;
 
 	}
 

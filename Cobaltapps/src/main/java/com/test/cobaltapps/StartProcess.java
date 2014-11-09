@@ -20,42 +20,82 @@ public class StartProcess extends JFrame {
 
 	public final void initUI() {
 		JPanel panel = new JPanel();
+
 		final JTextArea area = new JTextArea();
 		area.setPreferredSize(new Dimension(400, 400));
-		JButton start = new JButton("Start");
+		JButton extract = new JButton("Extract");
+		JButton sendMsg = new JButton("Send Message");
+		JButton register = new JButton("Register");
 		JButton stop = new JButton("Stop");
-		panel.add(start);
+
+		panel.add(register);
+		panel.add(extract);
+		panel.add(sendMsg);
 		panel.add(stop);
 		/*
 		 * JTree tree = new JTree(); panel.add(tree);
 		 */
-		start.addActionListener(new ActionListener() {
+		extract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				area.setText("Process Started..................");
-				area.setText("Starting Webdriver...............");
+
 				try {
 					Extract_Info.startProcess();
 				} catch (InterruptedException e1) {
-					
+
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					
+
 					e1.printStackTrace();
 				}
-				
+
+			}
+		});
+
+		sendMsg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				area.setText("Process Started..................");
+
+				try {
+					Extract_Info.startProcess();
+				} catch (InterruptedException e1) {
+
+					e1.printStackTrace();
+				} catch (IOException e1) {
+
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		register.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				area.setText("Process Started..................");
+
+				try {
+					Extract_Info.startProcess();
+				} catch (InterruptedException e1) {
+
+					e1.printStackTrace();
+				} catch (IOException e1) {
+
+					e1.printStackTrace();
+				}
+
 			}
 		});
 		stop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				area.setText("Process Stopped..................");
-				area.setText("Stopping Webdriver...............");
+
 				try {
 					Extract_Info.stopProcess();
 				} catch (InterruptedException e1) {
-					
+
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					
+
 					e1.printStackTrace();
 				}
 			}
@@ -63,7 +103,7 @@ public class StartProcess extends JFrame {
 		panel.add(area);
 		add(panel);
 		pack();
-		setTitle("FlowLayout Example");
+		setTitle("Cobaltapps");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}
