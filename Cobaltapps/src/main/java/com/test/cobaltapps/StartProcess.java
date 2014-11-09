@@ -54,7 +54,7 @@ public class StartProcess extends JFrame {
 
 		sendMsg.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				area.setText("Process Started..................");
+				area.setText("Sending Message..................");
 
 				try {
 					Extract_Info.startProcess();
@@ -71,7 +71,7 @@ public class StartProcess extends JFrame {
 
 		register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				area.setText("Process Started..................");
+				area.setText("Registration Started..................");
 
 				try {
 					Extract_Info.startProcess();
