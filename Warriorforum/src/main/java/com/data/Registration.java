@@ -27,7 +27,7 @@ public class Registration {
 	public static void main(String[] args) throws Exception {
 		WebDriver driver = new FirefoxDriver();
 		WebDriverWait wait = new WebDriverWait(driver, 120);
-		driver.get("http://cobaltapps.com/forum/register");
+		driver.get("http://www.warriorforum.com/");
 		driver.manage().window().maximize();
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("scroll(0, 250)");

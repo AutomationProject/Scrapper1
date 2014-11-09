@@ -11,12 +11,10 @@ import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -27,7 +25,7 @@ public class Registration {
 	public static void main(String[] args) throws Exception {
 		WebDriver driver = new FirefoxDriver();
 		WebDriverWait wait = new WebDriverWait(driver, 120);
-		driver.get("http://cobaltapps.com/forum/register");
+		driver.get("http://www.webmastersun.com/");
 		driver.manage().window().maximize();
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("scroll(0, 250)");
@@ -87,7 +85,6 @@ public class Registration {
 
 		Thread.sleep(3000);
 		driver.get("http://cobaltapps.com/forum/");
-		
 
 	}
 
