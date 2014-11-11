@@ -48,8 +48,8 @@ public class ExtractInfo {
 
 	static Document doc;
 
-	static WebDriver driver = new FirefoxDriver();
-	static WebDriverWait wait = new WebDriverWait(driver, 120);
+	static WebDriver driver ;
+	static WebDriverWait wait;
 	
 	static String Message;
 	
@@ -256,6 +256,8 @@ public class ExtractInfo {
 
 	static void sendMsg() throws InterruptedException {
 		
+		driver = new FirefoxDriver();
+		wait = new WebDriverWait(driver, 120);
 		
 		
 		
