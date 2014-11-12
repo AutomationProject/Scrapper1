@@ -218,7 +218,6 @@ public class ExtractInfo {
 					.click();
 			wait.until(ExpectedConditions.presenceOfElementLocated(By
 					.xpath("//textarea[contains(@name,'recipients')]")));
-			unique.add("firsttender");
 
 			for (String user : unique) {
 
@@ -254,7 +253,5 @@ public class ExtractInfo {
 	static void stopProcess() throws InterruptedException {
 		driver.close();
 	}
-
-	
 
 }
