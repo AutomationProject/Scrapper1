@@ -25,10 +25,9 @@ public class StartProcess extends JFrame {
 		area.setPreferredSize(new Dimension(400, 400));
 		JButton extract = new JButton("Extract");
 		JButton sendMsg = new JButton("Send Message");
-		JButton register = new JButton("Register");
+
 		JButton stop = new JButton("Stop");
 
-		panel.add(register);
 		panel.add(extract);
 		panel.add(sendMsg);
 		panel.add(stop);
@@ -66,22 +65,6 @@ public class StartProcess extends JFrame {
 			}
 		});
 
-		register.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				area.setText("Process Started..................");
-
-				try {
-					ExtractInfo.startProcess();
-				} catch (InterruptedException e1) {
-
-					e1.printStackTrace();
-				} catch (IOException e1) {
-
-					e1.printStackTrace();
-				}
-
-			}
-		});
 		stop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				area.setText("Process Stopped..................");

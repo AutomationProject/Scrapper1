@@ -55,7 +55,8 @@ public class ExtractInfo {
 	
 	static Set<String> unique  = new HashSet<String>();
 	
-	
+	static String Username;
+	static String Password;
 
 	// public static void main(String[] args) {
 	public static void startProcess() throws InterruptedException, IOException {
@@ -269,15 +270,23 @@ public class ExtractInfo {
 			e1.printStackTrace();
 		}
 		
+		try {
+			Username = PropertyValueGetter.returnstring(
+					"RegisteredUsers.properties", "Username");
+			Password = PropertyValueGetter.returnstring(
+					"RegisteredUsers.properties", "Password");
+		} catch (IOException e1) {
+
+			e1.printStackTrace();
+		}
+		
 		driver.get("http://www.deconetwork.com/forums/");
 		driver.manage().window().maximize();
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.xpath("//span[contains(.,'Username:')]")));
 
-		driver.findElement(By.xpath("//input[@name='username']")).sendKeys(
-				"DaveyShapiro");
-		driver.findElement(By.xpath("//input[@name='password']")).sendKeys(
-				"abcd1234");
+		driver.findElement(By.xpath("//input[@name='username']")).sendKeys(Username);
+		driver.findElement(By.xpath("//input[@name='password']")).sendKeys(Password);
 		driver.findElement(By.xpath("//input[contains(@name,'remember')]"))
 				.click();
 		driver.findElement(By.xpath("//input[@name='submit']")).click();
@@ -285,8 +294,7 @@ public class ExtractInfo {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.xpath("//input[@value='Logout']")));
 
-		unique.add("paradoxsc");
-		unique.add("Kinglis");
+		
 		
 		for (String send : unique){
 		driver.get("http://www.deconetwork.com/messages?task=inbox");
