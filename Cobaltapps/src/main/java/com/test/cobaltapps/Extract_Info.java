@@ -2,7 +2,10 @@ package com.test.cobaltapps;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -29,9 +32,12 @@ public class Extract_Info {
 	static List<String> users = new ArrayList<String>();
 	static WebDriver driver = new FirefoxDriver();
 	static WebDriverWait wait = new WebDriverWait(driver, 120);
+	static String Message;
+	static String Subject;
+	static String Username;
+	static String Password;
 
-	public static WebDriver startProcess() throws InterruptedException,
-			IOException {
+	public static void startProcess() throws InterruptedException, IOException {
 
 		// registerUsers();
 		driver.get("http://cobaltapps.com/forum/");
@@ -156,13 +162,86 @@ public class Extract_Info {
 		System.out.println("The text users size is:" + users.size());
 		System.out.println("The text users are:" + users);
 
-		sendMsg();
-		return driver;
+		PrintStream out = null;
+
+		try {
+
+			out = new PrintStream(new FileOutputStream(
+					"ExtractedUsers.properties"));
+
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+
+		}
+
+		Iterator<String> hashSetIterator = users.iterator();
+
+		while (hashSetIterator.hasNext()) {
+
+			out.println(hashSetIterator.next());
+
+		}
+		driver.close();
 
 	}
 
-	private static void sendMsg() throws InterruptedException {
+	static void sendMsg() throws InterruptedException {
+		try {
+			Subject = PropertyValueGetter.returnstring(
+					"MessageContent.properties", "Subject");
+			Message = PropertyValueGetter.returnstring(
+					"MessageContent.properties", "Message");
+		} catch (IOException e1) {
+
+			e1.printStackTrace();
+		}
+
+		try {
+			Username = PropertyValueGetter.returnstring(
+					"RegisteredUsers.properties", "Username");
+			Password = PropertyValueGetter.returnstring(
+					"RegisteredUsers.properties", "Password");
+		} catch (IOException e1) {
+
+			e1.printStackTrace();
+		}
+
 		Set<String> set = new HashSet<String>(users);
+
+		driver.get("http://cobaltapps.com/forum/");
+
+		driver.manage().window().maximize();
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.xpath("//span[contains(.,'Login or Sign Up')]")));
+
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("//span[contains(.,'Login or Sign Up')]"))
+				.click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.xpath("//iframe[contains(@id,'idLoginIframe')]")));
+		driver.switchTo().frame(
+				driver.findElement(By
+						.xpath("//iframe[contains(@id,'idLoginIframe')]")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.xpath("//input[contains(@name,'username')]")));
+		driver.findElement(By.xpath("//input[contains(@name,'username')]"))
+				.clear();
+
+		driver.findElement(By.xpath("//input[contains(@name,'username')]"))
+				.sendKeys(Username);
+		driver.findElement(By.xpath("//input[contains(@name,'password')]"))
+				.clear();
+		driver.findElement(By.xpath("//input[contains(@name,'password')]"))
+				.sendKeys(Password);
+		driver.findElement(By.xpath("//input[@id='idLoginRememberMe']"))
+				.click();
+		driver.findElement(By.xpath("//button[@id='idLoginBtn']")).click();
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.xpath("//a[@href='http://cobaltapps.com/forum/privatemessage/index']")));
+
 		for (String temp : set) {
 			System.out.println(temp);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By
@@ -183,20 +262,14 @@ public class Extract_Info {
 			Thread.sleep(3000);
 			driver.findElement(
 					By.cssSelector("input.b-form-input__input.b-form-input__input--full.js-content-entry-title"))
-					.sendKeys("Hello");
+					.sendKeys(Subject);
 			Thread.sleep(3000);
 
-			/*
-			 * driver.findElement( By.cssSelector(
-			 * "input.b-form-input__input.b-form-input__input--full.js-content-entry-title"
-			 * )) .sendKeys(Keys.ALT + "Hello");
-			 */
 			driver.switchTo().frame(
 					driver.findElement(By.className("cke_wysiwyg_frame")));
 			driver.findElement(
 					By.cssSelector("html body.js-vbulletin-has-placeholder-events.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders"))
-					.sendKeys(
-							"Hi, I am Davey. Hope you are doing good. I am a new member and I am here to say Hi....");
+					.sendKeys(Message);
 			Thread.sleep(3000);
 			driver.switchTo().defaultContent();
 			driver.findElement(By.xpath("//button[contains(.,'Post')]"))

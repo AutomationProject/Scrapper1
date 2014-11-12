@@ -57,11 +57,8 @@ public class StartProcess extends JFrame {
 				area.setText("Sending Message..................");
 
 				try {
-					Extract_Info.startProcess();
+					Extract_Info.sendMsg();
 				} catch (InterruptedException e1) {
-
-					e1.printStackTrace();
-				} catch (IOException e1) {
 
 					e1.printStackTrace();
 				}
