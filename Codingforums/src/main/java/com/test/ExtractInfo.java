@@ -144,7 +144,7 @@ public class ExtractInfo {
 		System.out.println(unique);
 
 		PrintStream out = null;
-		Properties prop = new Properties();
+		
 
 		try {
 

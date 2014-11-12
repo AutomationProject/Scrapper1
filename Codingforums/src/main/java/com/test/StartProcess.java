@@ -79,7 +79,7 @@ public class StartProcess extends JFrame {
 		panel.add(area);
 		add(panel);
 		pack();
-		setTitle("Webmastersun");
+		setTitle("Codingforums");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}
